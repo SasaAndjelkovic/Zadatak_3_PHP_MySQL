@@ -2,12 +2,12 @@
 
 abstract class BasicInformation {
     protected int $id;
-    protected string $name;
+    protected string $username;
 
-    public function __construct($id, $name)
+    public function __construct($id, $username)
     {
         $this->id = $id;
-        $this->name = $name;
+        $this->username = $username;
     }
 
     abstract public function getId();

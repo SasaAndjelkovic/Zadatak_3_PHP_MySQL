@@ -76,17 +76,15 @@ if (isset($_POST['fname']) && isset($_POST['pass'])) {
     $username = $_POST['fname'];
     $password = $_POST['pass'];
 
-    
-    if ($manager->getName() == $username && $manager->getPass() == $password) {
-        $_SESSION['user'] = $username;
-        include "view/home.php";
-        exit();
-    }
-}
+    $manager = new Manager(1, $username, "masha.neshkovic@gmail.com", $password);
+    $odgovor = Manager::loginManager($manager, $conn);
 
-if (isset($_SESSION['fname'])) {
-    include 'view/home.php';
-    exit();
+    if($odgovor->num_rows == 1) {
+        header("Location: home.php");
+        exit();
+    } else
+        echo "User ne postoji!";
+    
 }
 
 include 'view/login.php';

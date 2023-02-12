@@ -3,13 +3,13 @@
 class Manager extends BasicInformation implements PersonInformation {
 
 	private $email;
-	private $pass;
+	private $password;
     
-    public function __construct($id, $name, $email, $pass)
+    public function __construct($id, $username, $email, $password)
     {
-		parent::__construct($id, $name);
+		parent::__construct($id, $username);
 		$this->email = $email;
-		$this->pass = $pass;
+		$this->password = $password;
     }
 
 	public function getEmail() {
@@ -21,11 +21,11 @@ class Manager extends BasicInformation implements PersonInformation {
 	}
 	
 	public function getPass() {
-		return $this->pass;
+		return $this->password;
 	}
 	
-	public function setPass($pass) {
-		$this->pass = $pass;
+	public function setPass($password) {
+		$this->password = $password;
 	}
 	
 	public function getId() {
@@ -37,10 +37,20 @@ class Manager extends BasicInformation implements PersonInformation {
 	}
 	
 	public function getName() {
-		return $this->name;
+		return $this->username;
 	}
 	
 	public function setName($name_variable) {
-		$this->name = $name_variable;
+		$this->username = $name_variable;
 	}
+
+	public static function loginManager($manager, mysqli $conn) {
+        $query = "SELECT * 
+                  FROM manager
+                  WHERE username = '$manager->username' 
+                        AND password = '$manager->password'
+                  ";
+        return $conn->query($query);
+    }
+
 }

@@ -1,3 +1,15 @@
+<?php
+
+//print_r($_SESSION['avatar'][$_GET['izmeni']-1]);
+//echo ($_SESSION['avatar'][1]['avatarID']);
+//echo (count($_SESSION['avatar']));
+
+// for ($i = 0; $i < count($_SESSION['avatar']); $i++){
+//     echo $_SESSION['avatar'][$i]['avatarID'];
+// }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,8 +43,8 @@
                     <label for="avatar">Izaberi avatara:</label>
    
                     <select id="avatar" name="avatar">
-                        <?php
-                            for ($i = 0; $i < 4; $i++) {    
+                        <?php   
+                            for ($i = 0; $i < count($_SESSION['avatar'])/2; $i++) {    
                         ?>
                         <option value="<?php echo $_SESSION['avatar'][$i]['avatarID'] ?>"><?php echo $_SESSION['avatar'][$i]['avatarName'] ?></option>
                         <?php
@@ -40,6 +52,7 @@
                         ?>
                     </select>
                </div>
+               <br>
                <button type="submit" name="azurirajPredstavu"></i> Ažuriraj predstavu</button>
             </div>
         </div>

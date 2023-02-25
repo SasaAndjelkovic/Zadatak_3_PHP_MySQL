@@ -26,16 +26,18 @@ require "../dbBroker.php";
         </div>
         <div>
             <label for="avatar">Izaberi avatara:</label>
-            < id="avatar" name="avatar">
+            <select id="avatar" name="avatar">
                 <?php
-                for ($i = 0; $i < 4; $i++) { 
+                for ($i = 0; $i < count($_SESSION['avatar'])/2; $i++) { 
                 ?>
             <option value="<?php echo $_SESSION['avatar'][$i]['avatarID'] ?>"><?php echo $_SESSION['avatar'][$i]['avatarName'] ?></option>
                 <?php
                     }
                 ?>
+            </select>
         </div>
-
+        
+        <br>
         <button id="btnDodaj" type="submit" name="dodajPredstavu">Dodaj predstavu</button>
     </form>
 

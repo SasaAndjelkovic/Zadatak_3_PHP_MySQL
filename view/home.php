@@ -42,6 +42,7 @@ while ($redAdd = $resultAdd->fetch_array()) {
         <form action="finance.php" method="get">
             <input type="submit" name="finansije" size="25" value="Finansijski izvestaj">
             <br>
+            <br>
         </form>
 
         <div>
@@ -81,11 +82,13 @@ while ($redAdd = $resultAdd->fetch_array()) {
             <input type="text" name="izmeni" size="25" placeholder="Upisi ID predstave za izmenu">
             <button>Izmeni</button>
             <br>
+            <br>
         </form>
 
         <form action="..//controler/delete.php" method="get">
             <input type="text" name="izbrisi" id="izbrisiV" size="25" placeholder="Upisi ID predstave za brisanje" value="">
             <button id="izbrisi">Obrisi</button>
+            <br>
             <br>
         </form>
     </div>

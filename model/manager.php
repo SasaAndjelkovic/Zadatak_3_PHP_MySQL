@@ -1,15 +1,18 @@
 <?php
 
-class Manager extends BasicInformation implements PersonInformation {
+class Manager {
 
 	private $email;
 	private $password;
+	private $id;
+	private $username;
     
     public function __construct($id, $username, $email, $password)
     {
-		parent::__construct($id, $username);
 		$this->email = $email;
 		$this->password = $password;
+		$this->id = $id;
+		$this->username = $username;
     }
 
 	public function getEmail() {

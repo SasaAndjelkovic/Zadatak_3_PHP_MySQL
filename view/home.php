@@ -1,33 +1,39 @@
 <?php
 
-trait Welcome {
+require "../dbBroker.php";
+require "../model/show.php";
+include "../model/manager.php";
+include "../model/avatar.php";
 
 
-    static function datum() {
-        $datum = date ("l jS \of F Y h:i:s A");
-        return $datum;
-        }
-        
-    static function quantity() {
-        $quantity = rand(1, 100);
-        return $quantity;
-        }
-        
-    static function poruka() {
-        $msg = "Izvestaj o prodaji se sastoji od dva podataka: datum izvestaja i kolicina prodaje"; 
-        return strtoupper($msg);
-    }
+if (isset($_GET['addShow'])) {
+    include_once 'addShow.php';
+    exit();
 }
 
-echo "<h1>Izvestaj o prodaji</h1>";
-echo Welcome::poruka();
-echo "<hr>";
-echo Welcome::datum();
-echo "<hr>";
-echo Welcome::quantity();
-echo "<hr>";
+if (isset($_GET['sort']))
+    $result = Show::getAllSort($conn);
+else
+    $result = Show::getAll($conn);
 
-//Welcome::_toString($msg, $quantity, $datum);
+//$result = Show::getAll($conn);
+$resultAdd = Avatar::getAvatar($conn);
+
+while ($redAdd = $resultAdd->fetch_array()) { 
+    //print_r($redAdd);
+    $_SESSION['avatar'][] = $redAdd;
+};
+
+echo ($_SESSION['avatar'][0]['avatarID']);
+//print_r($resultAdd->fetch_array());
+//echo "array <hr>";
+//Array ( [0] => 1 [avatarID] => 1 [1] => Fjodor [avatarName] => Fjodor [2] => Lorem Ipsum mistican [description] => Lorem Ipsum mistican ) array
+//print_r($resultAdd->fetch_assoc());
+//echo "assoc <hr>";
+//Array ( [avatarID] => 2 [avatarName] => David [description] => Lorem Ipsum osoben ) assoc
+
+//$_SESSION['avatar'] = $resultAdd;
+//print_r($_SESSION['avatar']);
 
 ?>
 
@@ -43,55 +49,69 @@ echo "<hr>";
 <body>
 
     <div>
-        <h1>Teatar na brdu - Predstave</h1>
-    </div>
+        <br>
+        <form action="finance.php" method="get">
+            <input type="submit" name="finansije" size="25" value="Finansijski izvestaj">
+            <br>
+        </form>
 
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Naziv predstave</th>
-                    <th>Opis</th>
-                    <th>Autor</th>
-                    <th>Avatar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($_SESSION['predstave'] as $predstave) :
-                ?>
+        <div>
+            <table>
+                <thead>
                     <tr>
-                        <td> <?php echo $predstave->getId(); ?></td>
-                        <td> <?php echo $predstave->getName(); ?></td>
-                        <td> <?php echo $predstave->getDescription(); ?> </td>
-                        <td> <?php echo $predstave->getAuthor(); ?></td>
-                        <td> <?php print_r($predstave->getSpisakAvatara()[0]->getName());  ?>
+                        <th>ID</th>
+                        <th>Naziv predstave</th>
+                        <th>Opis</th>
+                        <th>Autor</th>
+                        <th>Avatar</th>
                     </tr>
-                <?php
+                </thead>
+                <tbody>
+                    <?php
+                        //$result = Show::getAll($conn); 
+                        //$test = $result->fetch_array();
+                        //print_r ($test); 
+                        //echo $test['avatarName'];
+                        while ($red = $result->fetch_array()) {
+                            // print_r($red);
+                            // echo "<br><br>";
+                            // echo $red['showID'];
+                            // echo "<hr>";
+                            $_SESSION['predstave'][] = $red;
+                            // print_r($_SESSION['predstave']);
+                            // echo "<br><br>";
+                            
+                    ?>
+                        <tr>
+                            <td> <?php echo $red['showID'] ?></td>
+                            <td> <?php echo $red['showName'] ?></td>
+                            <td> <?php echo $red['description'] ?> </td>
+                            <td> <?php echo $red['author'] ?></td>
+                            <td> <?php echo $red['avatarName']; 
+                                //$_SESSION['avatar'][] = $red['avatarName'];
+                                //echo ($_SESSION['avatar'][$i])
+                            ?></td> 
+                        
+                        </tr>
+                    <?php
+                        };
+                    ?>
+                </tbody>
+            </table>
+            <br>
+        </div>
 
-                endforeach;
-
-                ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-        <h1>CUD operacije</h1>
-
-        <form action="" method="get">
+        <form action="updateShow.php" method="get">
             <input type="text" name="izmeni" size="25" placeholder="Upisi ID predstave za izmenu">
             <button>Izmeni</button>
             <br>
         </form>
 
-        <form action="" method="get">
-            <input type="text" name="izbrisi" size="25" placeholder="Upisi ID predstave za brisanje">
-            <button>Obrisi</button>
+        <form action="..//controler/delete.php" method="get">
+            <input type="text" name="izbrisi" id="izbrisiV" size="25" placeholder="Upisi ID predstave za brisanje" value="">
+            <button id="izbrisi">Obrisi</button>
             <br>
         </form>
-
     </div>
 
     <div>
@@ -101,11 +121,16 @@ echo "<hr>";
     </div>
     <br>
 
+    <div>
+        <a href="?sort">
+            <button>Sortiraj po imenu</button>
+        </a>
+    </div>
+    <br>
 
     <br>
-    <a href="?logout">
+    <a href="logout.php">
         <button>Logout</button>
-    </a>
 
 </body>
 

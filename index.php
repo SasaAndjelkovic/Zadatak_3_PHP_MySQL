@@ -20,27 +20,7 @@ if (isset($_POST['fname']) && isset($_POST['pass'])) {
         exit();
     } else
         echo "User ne postoji!";
-    
-<<<<<<< HEAD
-        if ($manager->getName() == $username && $manager->getPass() == $password) {
-        $_SESSION['user'] = $username;
-        include "view/home.php";
-        exit();
-    }
-}
 
-if (isset($_SESSION['fname'])) {
-    include 'view/home.php';
-    exit();
-}    
-
-include 'view/login.php';
-=======
-    //     if ($manager->getName() == $username && $manager->getPass() == $password) {
-    //     $_SESSION['user'] = $username;
-    //     include "view/home.php";
-    //     exit();
-    // }
 }
 
 ?>
@@ -68,8 +48,3 @@ include 'view/login.php';
         </div>
 </body>
 </html>
-
-
->>>>>>> 64d5e4c805ac6f3714a36ab7ab2e7405f0c501ff
-
-

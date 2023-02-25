@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 
 require "../dbBroker.php";
@@ -18,28 +16,16 @@ if (isset($_GET['sort']))
 else
     $result = Show::getAll($conn);
 
-//$result = Show::getAll($conn);
 $resultAdd = Avatar::getAvatar($conn);
 
 while ($redAdd = $resultAdd->fetch_array()) { 
-    //print_r($redAdd);
     $_SESSION['avatar'][] = $redAdd;
 };
 
-echo ($_SESSION['avatar'][0]['avatarID']);
-//print_r($resultAdd->fetch_array());
-//echo "array <hr>";
-//Array ( [0] => 1 [avatarID] => 1 [1] => Fjodor [avatarName] => Fjodor [2] => Lorem Ipsum mistican [description] => Lorem Ipsum mistican ) array
-//print_r($resultAdd->fetch_assoc());
-//echo "assoc <hr>";
-//Array ( [avatarID] => 2 [avatarName] => David [description] => Lorem Ipsum osoben ) assoc
-
-//$_SESSION['avatar'] = $resultAdd;
-//print_r($_SESSION['avatar']);
+//echo ($_SESSION['avatar'][0]['avatarID']);
 
 ?>
 
->>>>>>> 64d5e4c805ac6f3714a36ab7ab2e7405f0c501ff
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,21 +39,6 @@ echo ($_SESSION['avatar'][0]['avatarID']);
 
     <div>
         <br>
-<<<<<<< HEAD
-        <form action="" method="get">
-            <input type="submit" name="izmeni" size="25" value="Finansijski izvestaj">
-            <br>
-            <br>
-        </form>
-
-        <form action="" method="get">
-            <input type="submit" name="izmeni" size="25" value="Prikazi predstave">
-            <br>
-            <br>
-        </form>
-
-        <form action="" method="get">
-=======
         <form action="finance.php" method="get">
             <input type="submit" name="finansije" size="25" value="Finansijski izvestaj">
             <br>
@@ -86,19 +57,8 @@ echo ($_SESSION['avatar'][0]['avatarID']);
                 </thead>
                 <tbody>
                     <?php
-                        //$result = Show::getAll($conn); 
-                        //$test = $result->fetch_array();
-                        //print_r ($test); 
-                        //echo $test['avatarName'];
                         while ($red = $result->fetch_array()) {
-                            // print_r($red);
-                            // echo "<br><br>";
-                            // echo $red['showID'];
-                            // echo "<hr>";
-                            $_SESSION['predstave'][] = $red;
-                            // print_r($_SESSION['predstave']);
-                            // echo "<br><br>";
-                            
+                            $_SESSION['predstave'][] = $red;       
                     ?>
                         <tr>
                             <td> <?php echo $red['showID'] ?></td>
@@ -106,8 +66,6 @@ echo ($_SESSION['avatar'][0]['avatarID']);
                             <td> <?php echo $red['description'] ?> </td>
                             <td> <?php echo $red['author'] ?></td>
                             <td> <?php echo $red['avatarName']; 
-                                //$_SESSION['avatar'][] = $red['avatarName'];
-                                //echo ($_SESSION['avatar'][$i])
                             ?></td> 
                         
                         </tr>
@@ -120,17 +78,14 @@ echo ($_SESSION['avatar'][0]['avatarID']);
         </div>
 
         <form action="updateShow.php" method="get">
->>>>>>> 64d5e4c805ac6f3714a36ab7ab2e7405f0c501ff
             <input type="text" name="izmeni" size="25" placeholder="Upisi ID predstave za izmenu">
             <button>Izmeni</button>
-            <br>
             <br>
         </form>
 
         <form action="..//controler/delete.php" method="get">
             <input type="text" name="izbrisi" id="izbrisiV" size="25" placeholder="Upisi ID predstave za brisanje" value="">
             <button id="izbrisi">Obrisi</button>
-            <br>
             <br>
         </form>
     </div>

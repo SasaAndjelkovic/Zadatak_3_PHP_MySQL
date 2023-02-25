@@ -1,36 +1,3 @@
-<?php
-
-trait Welcome {
-
-
-    static function datum() {
-        $datum = date ("l jS \of F Y h:i:s A");
-        return $datum;
-        }
-        
-    static function quantity() {
-        $quantity = rand(1, 100);
-        return $quantity;
-        }
-        
-    static function poruka() {
-        $msg = "Izvestaj o prodaji se sastoji od dva podataka: datum izvestaja i kolicina prodaje"; 
-        return strtoupper($msg);
-    }
-}
-
-echo "<h1>Izvestaj o prodaji</h1>";
-echo Welcome::poruka();
-echo "<hr>";
-echo Welcome::datum();
-echo "<hr>";
-echo Welcome::quantity();
-echo "<hr>";
-
-//Welcome::_toString($msg, $quantity, $datum);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,52 +10,30 @@ echo "<hr>";
 <body>
 
     <div>
-        <h1>Teatar na brdu - Predstave</h1>
-    </div>
+        <br>
+        <form action="" method="get">
+            <input type="submit" name="izmeni" size="25" value="Finansijski izvestaj">
+            <br>
+            <br>
+        </form>
 
-    <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Naziv predstave</th>
-                    <th>Opis</th>
-                    <th>Autor</th>
-                    <th>Avatar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach ($_SESSION['predstave'] as $predstave) :
-                ?>
-                    <tr>
-                        <td> <?php echo $predstave->getId(); ?></td>
-                        <td> <?php echo $predstave->getName(); ?></td>
-                        <td> <?php echo $predstave->getDescription(); ?> </td>
-                        <td> <?php echo $predstave->getAuthor(); ?></td>
-                        <td> <?php print_r($predstave->getSpisakAvatara()[0]->getName());  ?>
-                    </tr>
-                <?php
-
-                endforeach;
-
-                ?>
-            </tbody>
-        </table>
-    </div>
-
-    <div>
-        <h1>CUD operacije</h1>
+        <form action="" method="get">
+            <input type="submit" name="izmeni" size="25" value="Prikazi predstave">
+            <br>
+            <br>
+        </form>
 
         <form action="" method="get">
             <input type="text" name="izmeni" size="25" placeholder="Upisi ID predstave za izmenu">
             <button>Izmeni</button>
+            <br>
             <br>
         </form>
 
         <form action="" method="get">
             <input type="text" name="izbrisi" size="25" placeholder="Upisi ID predstave za brisanje">
             <button>Obrisi</button>
+            <br>
             <br>
         </form>
 

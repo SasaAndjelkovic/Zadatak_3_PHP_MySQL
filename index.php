@@ -80,12 +80,22 @@ if (isset($_POST['fname']) && isset($_POST['pass'])) {
     $odgovor = Manager::loginManager($manager, $conn);
 
     if($odgovor->num_rows == 1) {
-        header("Location: home.php");
+        header("Location: view/home.php");
         exit();
     } else
         echo "User ne postoji!";
     
+        if ($manager->getName() == $username && $manager->getPass() == $password) {
+        $_SESSION['user'] = $username;
+        include "view/home.php";
+        exit();
+    }
 }
+
+if (isset($_SESSION['fname'])) {
+    include 'view/home.php';
+    exit();
+}    
 
 include 'view/login.php';
 

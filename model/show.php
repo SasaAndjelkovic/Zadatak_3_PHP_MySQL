@@ -5,8 +5,8 @@ class Show extends BasicInformation implements TheaterInformation {
     private $description;
 	protected $spisakAvatara;
     
-    public function __construct($id, $name, $description, $author) {
-        parent::__construct($id, $name);
+    public function __construct($id, $username, $description, $author) {
+        parent::__construct($id, $username);
         $this->description = $description;
         $this->author = $author;
 		$this->spisakAvatara = array();
@@ -31,11 +31,11 @@ class Show extends BasicInformation implements TheaterInformation {
 	}
 	
 	public function getName() {
-        return $this->name;
+        return $this->username;
 	}
 	
 	public function setName($name_variable) {
-        $this->name = $name_variable;
+        $this->username = $name_variable;
 	}
  
 	public function setAuthor($author) {

@@ -19,7 +19,7 @@ class Avatar {
 	public function setDescription($description) {
         $this->description = $description;
 	}
-	//sta sad
+	
 	public function getId() {
         return $this->avatarID;
 	}

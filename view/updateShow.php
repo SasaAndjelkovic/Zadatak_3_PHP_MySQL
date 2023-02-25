@@ -1,21 +1,3 @@
-<?php
-
-//print_r ($_SESSION['predstave'][$_GET['izmeni']-1]['showName']);
-
-//print_r ($_SESSION['predstave'][$_GET['izmeni']-1]);
-//echo "<hr>";
-//echo ($_SESSION['predstave'][$_GET['izmeni']-1]['showName']);
-// echo $_SESSION['predstave']['showName'];
-// echo $_SESSION['predstave']['description'];
-// echo $_SESSION['predstave']['author'];
-// for ($i = 0; $i < count($_SESSION['predstave']); $i++) {
-//        if ($_SESSION['predstave'][$i]->getId() == $_GET['izmeni']) {
-//             $index = $i;
-//             break;
-//         }
-//     }
-?> 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,8 +32,6 @@
    
                     <select id="avatar" name="avatar">
                         <?php
-                            //$resultAdd = Avatar::getAvatar($conn); 
-                            //while ($redAdd = $resultAdd->fetch_array()) {
                             for ($i = 0; $i < 4; $i++) {    
                         ?>
                         <option value="<?php echo $_SESSION['avatar'][$i]['avatarID'] ?>"><?php echo $_SESSION['avatar'][$i]['avatarName'] ?></option>

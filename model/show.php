@@ -8,12 +8,7 @@ class Show  {
     private $description;
     private $IDAvatar;
     
-<<<<<<< HEAD
-    public function __construct($id, $username, $description, $author) {
-        parent::__construct($id, $username);
-=======
     public function __construct($showID, $showName, $description, $author, $IDAvatar) {
->>>>>>> 64d5e4c805ac6f3714a36ab7ab2e7405f0c501ff
         $this->description = $description;
         $this->author = $author;
         $this->IDAvatar = $IDAvatar;
@@ -38,19 +33,11 @@ class Show  {
 	}
 	
 	public function getName() {
-<<<<<<< HEAD
-        return $this->username;
-	}
-	
-	public function setName($name_variable) {
-        $this->username = $name_variable;
-=======
         return $this->showName;
 	}
 	
 	public function setName($name_variable) {
         $this->showName = $name_variable;
->>>>>>> 64d5e4c805ac6f3714a36ab7ab2e7405f0c501ff
 	}
  
 	public function setAuthor($author) {

@@ -44,11 +44,12 @@
    
                     <select id="avatar" name="avatar">
                         <?php   
-                            for ($i = 0; $i < count($_SESSION['avatar'])/2; $i++) {    
+                            for ($i = 0; $i < count($_SESSION['avatar']); $i++) {    
                         ?>
                         <option value="<?php echo $_SESSION['avatar'][$i]['avatarID'] ?>"><?php echo $_SESSION['avatar'][$i]['avatarName'] ?></option>
                         <?php
                             }
+                            $_SESSION['avatar'] = [];
                         ?>
                     </select>
                </div>
